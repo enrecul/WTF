@@ -1,0 +1,17 @@
+//
+//  WTF-Prefix.pch
+//  WTF
+//
+//  Created by 黄春涛 on 16/5/17.
+//  Copyright © 2016年 黄春涛. All rights reserved.
+//
+
+#ifndef WTF_Prefix_pch
+#define WTF_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "YYKit.h"
+
+#endif /* WTF_Prefix_pch */
