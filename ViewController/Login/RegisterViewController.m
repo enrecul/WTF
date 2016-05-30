@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#import "WTFUser.h"
 
 @interface RegisterViewController ()
 
@@ -27,14 +28,13 @@
     tap.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tap];
     
-    
 }
 
 
 #pragma mark - Target & Action
 //点击直接登陆按钮
 - (IBAction)backToLoginVC:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 //完成注册按钮点击
 - (IBAction)finishRegister:(id)sender {
@@ -46,8 +46,9 @@
     NSString *email = _emailTextField.text;
     NSString *password = _passwordTextField.text;
     
-    AVUser *user = [AVUser user];
-    user.username = username;
+    WTFUser *user = [WTFUser user];
+    user.nickName = username;
+    user.username = email;
     user.email = email;
     user.password = password;
     
@@ -55,7 +56,7 @@
         if (succeeded) {
             //注册成功
             [self.view makeToast:@"注册成功"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:NO];
         }
         else{
             //注册失败

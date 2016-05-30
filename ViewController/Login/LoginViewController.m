@@ -10,7 +10,7 @@
 
 @interface LoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
@@ -19,22 +19,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     //手势收起键盘
     self.view.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewTapped:)];
     tap.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tap];
-}
-
--(void)viewWillAppear:(BOOL)animated{
+    
     //自动登陆
     AVUser *currentUser = [AVUser currentUser];
     if (currentUser != nil) {
         [self performSegueWithIdentifier:@"toTabVC" sender:nil];
     } else {
-       
+        
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +49,7 @@
     
     [self.view endEditing:YES];
     
-    [AVUser logInWithUsernameInBackground:_userNameTextField.text password:_passwordTextField.text block:^(AVUser *user, NSError *error) {
+    [AVUser logInWithUsernameInBackground:_emailAddressTextField.text password:_passwordTextField.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
             //登陆成功
             [self performSegueWithIdentifier:@"toTabVC" sender:sender];

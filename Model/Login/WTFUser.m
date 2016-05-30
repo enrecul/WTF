@@ -10,6 +10,8 @@
 
 @implementation WTFUser
 
+@dynamic nickName,avatarFile,myThings,inThings,myPosts,inPosts;
+
 + (NSString *)parseClassName {
     return @"_User";
 }

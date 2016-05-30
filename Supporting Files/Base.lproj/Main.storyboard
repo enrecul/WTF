@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--更多-->
+        <!--我的-->
         <scene sceneID="MSn-Qu-NY5">
             <objects>
                 <viewController id="We8-xV-282" customClass="MeViewController" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="qYG-Ju-vxM"/>
-                    <navigationItem key="navigationItem" title="更多" id="dQh-cn-Skh"/>
+                    <navigationItem key="navigationItem" title="我的" id="dQh-cn-Skh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m6b-ap-AYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,11 +46,11 @@
             </objects>
             <point key="canvasLocation" x="759" y="-806"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--事儿-->
         <scene sceneID="0zj-TD-dr4">
             <objects>
                 <navigationController id="wC5-Ad-Pn7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="lcn-oC-yDl"/>
+                    <tabBarItem key="tabBarItem" title="事儿" image="purchase_order" id="lcn-oC-yDl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aHp-fg-klc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -63,11 +63,11 @@
             </objects>
             <point key="canvasLocation" x="-100" y="-806"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--我的-->
         <scene sceneID="znb-2C-hn1">
             <objects>
                 <navigationController id="q69-Yl-mlj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="xT0-vg-Baw"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="person_in_a_mirror_filled" id="xT0-vg-Baw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QR1-TR-cei">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -83,7 +83,7 @@
         <!--Login View Controller-->
         <scene sceneID="aKg-Ie-Amz">
             <objects>
-                <viewController id="6IX-nB-C1i" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="6IX-nB-C1i" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ePX-p5-4xS"/>
                         <viewControllerLayoutGuide type="bottom" id="Skw-Ad-bft"/>
@@ -98,7 +98,7 @@
                                     <constraint firstAttribute="height" constant="30" id="LJQ-Ha-csM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kby-qC-nbH">
@@ -124,10 +124,10 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="新用户注册"/>
                                 <connections>
-                                    <segue destination="Bai-GM-TKb" kind="show" id="D4K-1c-Kxi"/>
+                                    <segue destination="Bai-GM-TKb" kind="show" animates="NO" id="D4K-1c-Kxi"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-F8-Amg">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-F8-Amg">
                                 <rect key="frame" x="200" y="167" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6pl-9X-xqh"/>
@@ -164,9 +164,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="CuV-yQ-aqQ"/>
                     <connections>
+                        <outlet property="emailAddressTextField" destination="TnS-F8-Amg" id="hfQ-x9-FIf"/>
                         <outlet property="passwordTextField" destination="65A-Xk-mXs" id="1aK-NJ-hCH"/>
-                        <outlet property="userNameTextField" destination="TnS-F8-Amg" id="ohZ-ag-SLs"/>
-                        <segue destination="d2E-LU-qvd" kind="show" identifier="toTabVC" id="jQH-bL-gRU"/>
+                        <segue destination="d2E-LU-qvd" kind="show" identifier="toTabVC" animates="NO" id="jQH-bL-gRU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="746-H7-Y7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -186,12 +186,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="6IX-nB-C1i" kind="relationship" relationship="rootViewController" id="efe-yJ-YDD"/>
+                        <segue destination="6IX-nB-C1i" kind="relationship" relationship="rootViewController" id="PXa-ku-QTp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9O-vi-lIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2361" y="-305"/>
+            <point key="canvasLocation" x="-2509" y="-305"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="prh-7F-SYx">
@@ -249,7 +249,7 @@
                                     <action selector="backToLoginVC:" destination="Bai-GM-TKb" eventType="touchUpInside" id="Q3L-g5-x3j"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A65-oa-UZo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A65-oa-UZo">
                                 <rect key="frame" x="200" y="120" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="nbq-XS-ey7"/>
@@ -303,4 +303,8 @@
             <point key="canvasLocation" x="-895" y="-305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person_in_a_mirror_filled" width="25" height="25"/>
+        <image name="purchase_order" width="25" height="25"/>
+    </resources>
 </document>

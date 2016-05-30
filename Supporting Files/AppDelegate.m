@@ -9,6 +9,13 @@
 #import "AppDelegate.h"
 #import <AVOSCloud/AVOSCloud.h>
 
+//Model
+#import "WTFUser.h"
+#import "Thing.h"
+#import "Post.h"
+#import "Praise.h"
+#import "Comment.h"
+
 @interface AppDelegate ()
 
 @end
@@ -19,10 +26,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //Register Model
+    [self registerAVModel];
+    
     //Lead Cloud
     [AVOSCloud setApplicationId:@"7e9R7eANGMVO19wEr1l21fVp-gzGzoHsz"
                       clientKey:@"uUv1FULDYvbPYzlXospHGaE8"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     
     return YES;
 }
@@ -47,6 +58,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Tool Function
+- (void)registerAVModel{
+    [WTFUser registerSubclass];
+    [Thing registerSubclass];
+    [Post registerSubclass];
+    [Praise registerSubclass];
+    [Comment registerSubclass];
 }
 
 @end
