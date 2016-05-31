@@ -9,6 +9,9 @@
 #ifndef UI_Prefix_h
 #define UI_Prefix_h
 
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
 #define kLargePadding 15
 #define kMiddlePadding 10
 #define kSmallPadding 5
