@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ThingsTableHeadViewDelegate <NSObject>
+
+- (void)resizeThingsHeadView;
+
+@end
+
 @interface ThingsTableHeadView : UIView
+
+@property (nonatomic, weak) id<ThingsTableHeadViewDelegate> delegate;
 
 @end

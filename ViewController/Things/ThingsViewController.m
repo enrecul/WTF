@@ -20,7 +20,8 @@
 
 @interface ThingsViewController ()<
 UITableViewDelegate,
-UITableViewDataSource>
+UITableViewDataSource,
+ThingsTableHeadViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -44,12 +45,12 @@ UITableViewDataSource>
             make.edges.equalTo(self.view);
         }];
         
-        
         _tableView;
     });
     
     _tableHeadView = ({
         _tableHeadView = [ThingsTableHeadView new];
+        _tableHeadView.delegate = self;
         _tableView.tableHeaderView = _tableHeadView;
         _tableHeadView;
     });
@@ -69,6 +70,11 @@ UITableViewDataSource>
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return kDefaultTableViewCell_Height;
 }
+
+- (void)resizeThingsHeadView{
+    self.tableView.tableHeaderView = _tableHeadView;
+}
+
 
 
 

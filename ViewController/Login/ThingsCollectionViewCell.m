@@ -10,6 +10,7 @@
 
 @interface ThingsCollectionViewCell()
 
+@property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UILabel *label;
 
 @end
@@ -20,16 +21,33 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        _backView = ({
+            UIView *view = [UIView new];
+            view.backgroundColor = [UIColor whiteColor];
+            view.layer.cornerRadius = kButtonCornerRadius;
+            view.clipsToBounds = YES;
+            
+            [self.contentView addSubview:view];
+            
+            UIEdgeInsets padding = UIEdgeInsetsMake(kSmallPadding, kSmallPadding, kSmallPadding, kSmallPadding);
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self).with.insets(padding);
+            }];
+            
+            view;
+        });
+        
+        
+        
+        
         _label = ({
             UILabel *view = [UILabel new];
             view.font = kSystemFont;
-            [self.contentView addSubview:view];
+            view.textAlignment = NSTextAlignmentCenter;
+            [_backView addSubview:view];
             
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.contentView.mas_left).with.offset(kSmallPadding);
-                make.right.equalTo(self.contentView.mas_right).with.offset(-kSmallPadding);
-                make.centerY.equalTo(self.contentView.mas_centerY);
-                make.height.equalTo(self.contentView.mas_height);
+                make.edges.equalTo(_backView);
             }];
             
             view;

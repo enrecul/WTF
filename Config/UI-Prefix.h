@@ -35,6 +35,7 @@
 
 //颜色
 #define kDefaultTintColor [UIColor colorWithHexString:@"005AFF"]
+#define kDefaultBackgroundColor [UIColor colorWithHexString:@"EFEEEA"]
 
 //圆角设置
 #define kButtonCornerRadius 5;

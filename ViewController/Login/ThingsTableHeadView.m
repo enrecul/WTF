@@ -34,7 +34,7 @@ UICollectionViewDataSource>
     self = [super init];
     if (self) {
         
-        self.backgroundColor = [UIColor colorWithHexString:@"EFEEEA"];
+        self.backgroundColor = kDefaultBackgroundColor;
         self.frame = CGRectMake(0, 0, ScreenWidth, kBottomView_Height + kCollectionView_Height + kBottomView_Height);
         _myThings = [NSMutableArray array];
         
@@ -78,8 +78,8 @@ UICollectionViewDataSource>
         
         _collectionView = ({
             
-            CGFloat itemWidth = 100;
-            CGFloat itemHeight = 50;
+            CGFloat itemWidth = ScreenWidth/2;
+            CGFloat itemHeight = kCollectionView_Height;
             
             UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -91,9 +91,9 @@ UICollectionViewDataSource>
             [_collectionView registerClass:[ThingsCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([ThingsCollectionViewCell class])];
             _collectionView.delegate = self;
             _collectionView.dataSource = self;
-//            _collectionView.pagingEnabled = YES;
+            _collectionView.pagingEnabled = YES;
             _collectionView.showsHorizontalScrollIndicator = NO;
-            _collectionView.backgroundColor = [UIColor yellowColor];
+            _collectionView.backgroundColor = kDefaultBackgroundColor;
             
             [self addSubview:_collectionView];
             
@@ -131,7 +131,7 @@ UICollectionViewDataSource>
         AVQuery *query = [relation query];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 //            _myThings = [objects mutableCopy];
-            _myThings = @[@"1",@"1",@"1",@"1",@"1",@"1"].mutableCopy;
+            _myThings = @[@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1"].mutableCopy;
             
             [_collectionView reloadData];
             
@@ -139,9 +139,6 @@ UICollectionViewDataSource>
             [self resizeSubViews];
             
         }];
-        
-        //调整SubView的高度
-        [self resizeSubViews];
         
     }
     return self;
@@ -169,7 +166,7 @@ UICollectionViewDataSource>
         make.left.equalTo(self);
         make.right.equalTo(self);
         make.top.equalTo(self.mas_top).with.offset(kHeadView_Height);
-        make.height.mas_equalTo((_myThings.count/2 + _myThings.count%2)*kCollectionView_Height);
+        make.height.mas_equalTo(MIN(kCollectionView_Height * 3, (_myThings.count/2 + _myThings.count%2)*kCollectionView_Height));
     }];
     
     [_pager mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -179,7 +176,13 @@ UICollectionViewDataSource>
         make.height.mas_equalTo(_myThings.count == 0 ? 0 : kBottomView_Height);
     }];
     
-    self.height = kHeadView_Height + ((_myThings.count/2 + _myThings.count%2)*kCollectionView_Height) + (_myThings.count == 0 ? 0 : kBottomView_Height);
+    self.height = kHeadView_Height
+    + MIN(kCollectionView_Height * 3, (_myThings.count/2 + _myThings.count%2)*kCollectionView_Height)
+    + (_myThings.count == 0 ? 0 : kBottomView_Height);
+    
+    if ([self.delegate respondsToSelector:@selector(resizeThingsHeadView)]) {
+        [self.delegate resizeThingsHeadView];
+    }
 
 }
 
