@@ -12,6 +12,8 @@
 
 - (void)resizeThingsHeadView;
 
+- (void)moreThingsBtnClick;
+
 @end
 
 @interface ThingsTableHeadView : UIView

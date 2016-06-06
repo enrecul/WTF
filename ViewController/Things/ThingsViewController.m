@@ -15,13 +15,14 @@
 //View
 #import "ThingsTableViewCell.h"
 #import "ThingsTableHeadView.h"
+#import "MoreThingsViewController.h"
 
 #define kDefaultTableViewCell_Height 100;
 
 @interface ThingsViewController ()<
-UITableViewDelegate,
-UITableViewDataSource,
-ThingsTableHeadViewDelegate>
+        UITableViewDelegate,
+        UITableViewDataSource,
+        ThingsTableHeadViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -31,48 +32,53 @@ ThingsTableHeadViewDelegate>
 @implementation ThingsViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    _tableView = ({
-        
-        _tableView = [UITableView new];
-        [self.view addSubview:_tableView];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView registerClass:[ThingsTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ThingsTableViewCell class])];
-        
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        
-        _tableView;
-    });
-    
-    _tableHeadView = ({
-        _tableHeadView = [ThingsTableHeadView new];
-        _tableHeadView.delegate = self;
-        _tableView.tableHeaderView = _tableHeadView;
-        _tableHeadView;
-    });
-    
+	[super viewDidLoad];
+
+	_tableView = ({
+		_tableView = [UITableView new];
+		[self.view addSubview:_tableView];
+		_tableView.delegate = self;
+		_tableView.dataSource = self;
+		[_tableView registerClass:[ThingsTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ThingsTableViewCell class])];
+
+		[_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+		         make.edges.equalTo(self.view);
+		 }];
+
+		_tableView;
+	});
+
+	_tableHeadView = ({
+		_tableHeadView = [ThingsTableHeadView new];
+		_tableHeadView.delegate = self;
+		_tableView.tableHeaderView = _tableHeadView;
+		_tableHeadView;
+	});
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return 10;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ThingsTableViewCell class]) forIndexPath:indexPath];
-    return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ThingsTableViewCell class]) forIndexPath:indexPath];
+	return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return kDefaultTableViewCell_Height;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return kDefaultTableViewCell_Height;
 }
 
-- (void)resizeThingsHeadView{
-    self.tableView.tableHeaderView = _tableHeadView;
+
+#pragma mark - ThingsTableHeadViewDelegate
+- (void)resizeThingsHeadView {
+	self.tableView.tableHeaderView = _tableHeadView;
+}
+
+-(void)moreThingsBtnClick {
+	MoreThingsViewController *moreThingsVC = [MoreThingsViewController new];
+	[self.navigationController pushViewController:moreThingsVC animated:YES];
 }
 
 
